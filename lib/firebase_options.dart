@@ -2,7 +2,7 @@
 // ignore_for_file: lines_longer_than_80_chars, avoid_classes_with_only_static_members
 import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
 import 'package:flutter/foundation.dart'
-    show defaultTargetPlatform, kIsWeb, TargetPlatform;
+    show TargetPlatform, defaultTargetPlatform, kIsWeb;
 
 /// Default [FirebaseOptions] for use with your Firebase apps.
 ///
@@ -57,7 +57,7 @@ class DefaultFirebaseOptions {
     appId: '1:746969617059:web:9af5f8730b7800764ee516',
     messagingSenderId: '746969617059',
     projectId: 'anaba-prod',
-    authDomain: 'anaba-prod.firebaseapp.com',
+    authDomain: 'anaba.app',
     storageBucket: 'anaba-prod.appspot.com',
     measurementId: 'G-HK2EQZ8W40',
   );
