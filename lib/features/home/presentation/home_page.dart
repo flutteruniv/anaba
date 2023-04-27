@@ -1,5 +1,7 @@
+import 'package:cloud_functions/cloud_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../auth/presentation/auth_dialog.dart';
 import '../../auth/providers/auth_service.dart';
@@ -59,9 +61,15 @@ class HomePage extends ConsumerWidget {
                         child: const Text('事前登録'),
                       )
                     else
-                      Text(
-                        '${user.displayName ?? ''}さん\n事前登録ありがとうございます。\nサービス開始の際はメールにて連絡いたします。',
-                        textAlign: TextAlign.center,
+                      ElevatedButton(
+                        onPressed: () async {
+                          final response = await FirebaseFunctions.instanceFor(
+                            region: 'asia-northeast1',
+                          ).httpsCallable('createStripeAccount').call();
+
+                          await launchUrl(Uri.parse(response.data as String));
+                        },
+                        child: const Text('アカウント情報を入力'),
                       ),
                     const SizedBox(height: 32),
                     const Text(

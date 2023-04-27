@@ -32,7 +32,7 @@ export const createStripeAccount = functions.region(`asia-northeast1`).https.onC
     }
   })
 
-  admin.firestore().collection(`users`).doc(uid).update({
+  await admin.firestore().collection(`users`).doc(uid).update({
     stripeAccountId: account.id
   })
 
