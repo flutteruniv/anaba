@@ -4,6 +4,8 @@ import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
 import 'package:flutter/foundation.dart'
     show TargetPlatform, defaultTargetPlatform, kIsWeb;
 
+import 'configs/flavor.dart';
+
 /// Default [FirebaseOptions] for use with your Firebase apps.
 ///
 /// Example:
@@ -52,13 +54,23 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyA4ubTDP2ODjssKN7bdxSE4Ctv3KAWxIv0',
-    appId: '1:746969617059:web:9af5f8730b7800764ee516',
-    messagingSenderId: '746969617059',
-    projectId: 'anaba-prod',
-    authDomain: 'anaba.app',
-    storageBucket: 'anaba-prod.appspot.com',
-    measurementId: 'G-HK2EQZ8W40',
-  );
+  static const FirebaseOptions web = isDevMode
+      ? FirebaseOptions(
+          apiKey: 'AIzaSyDP7Jg1EUQB20LDj7OSvqYCz0CNeZNla-s',
+          appId: '1:650202335339:web:e1900fbaec9d2bed78c92e',
+          messagingSenderId: '650202335339',
+          projectId: 'anaba-dev',
+          authDomain: 'anaba-dev.firebaseapp.com',
+          storageBucket: 'anaba-dev.appspot.com',
+          measurementId: 'G-LGWN80QMWJ',
+        )
+      : FirebaseOptions(
+          apiKey: 'AIzaSyA4ubTDP2ODjssKN7bdxSE4Ctv3KAWxIv0',
+          appId: '1:746969617059:web:9af5f8730b7800764ee516',
+          messagingSenderId: '746969617059',
+          projectId: 'anaba-prod',
+          authDomain: 'anaba.app',
+          storageBucket: 'anaba-prod.appspot.com',
+          measurementId: 'G-HK2EQZ8W40',
+        );
 }

@@ -40,10 +40,3 @@ class StripeRepository {
     return response.data;
   }
 }
-
-
-  // title: 商品名
-  // amount: 価格
-  // accountId: 出品者のID
-  // customerId: 購入者のID
-  // documentId: 商品ID

@@ -17,15 +17,16 @@
       ]
     },
     {
-      "name": "anaba (profile mode)",
+      "name": "本番版リリースビルド",
       "request": "launch",
       "type": "dart",
-      "flutterMode": "profile"
-    },
-    {
-      "name": "anaba (release mode)",
-      "request": "launch",
-      "type": "dart",
+      "args": [
+        "--web-port",
+        "5000",
+        "--web-renderer",
+        "html",
+        "--dart-define=FLAVOR=prod"
+      ],
       "flutterMode": "release"
     }
   ]
