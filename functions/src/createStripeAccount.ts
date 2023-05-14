@@ -1,21 +1,18 @@
 import * as admin from 'firebase-admin'
 import * as functions from 'firebase-functions'
-import Stripe from 'stripe'
+import { stripe } from './stripe'
 
-admin.initializeApp()
-
-const stripe = new Stripe(functions.config().secret.stripe_api_key, {
-  apiVersion: `2022-11-15`
-})
-
+/**
+ * StripeAccountを作成する
+ */
 export const createStripeAccount = functions.region(`asia-northeast1`).https.onCall(async (_, context) => {
   const uid = context.auth?.uid
   if (uid == null) {
     throw new functions.https.HttpsError(`invalid-argument`, `Not found uid`)
   }
-  const userRecord = admin.auth().getUser(uid)
-  const email = (await userRecord).email
-  if (uid == null) {
+  const userRecord = await admin.auth().getUser(uid)
+  const email = userRecord.email
+  if (email == null) {
     throw new functions.https.HttpsError(`invalid-argument`, `Not found email`)
   }
   const account = await stripe.accounts.create({
@@ -32,9 +29,14 @@ export const createStripeAccount = functions.region(`asia-northeast1`).https.onC
     }
   })
 
-  await admin.firestore().collection(`users`).doc(uid).update({
-    stripeAccountId: account.id
-  })
+  await admin.firestore().collection(`users`).doc(uid).set(
+    {
+      stripeAccountId: account.id
+    },
+    {
+      merge: true
+    }
+  )
 
   const accountLink = await stripe.accountLinks.create({
     account: account.id,

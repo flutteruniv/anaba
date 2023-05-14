@@ -22,8 +22,8 @@ module.exports = {
   ],
   plugins: [`@typescript-eslint`, `import`],
   rules: {
-    quotes: [`error`, `backtick`],
-    indent: [`error`, 2]
+    quotes: [`error`, `backtick`]
+    // indent: [`error`, 2]
   },
   extends: [`prettier`],
   settings: {

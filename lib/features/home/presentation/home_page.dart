@@ -1,10 +1,9 @@
-import 'package:cloud_functions/cloud_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../../providers.dart';
 import '../../auth/presentation/auth_dialog.dart';
-import '../../auth/providers/auth_service.dart';
 
 class HomePage extends ConsumerWidget {
   const HomePage({super.key});
@@ -13,7 +12,7 @@ class HomePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final user = ref.watch(userProvider).valueOrNull;
+    final user = ref.watch(P.userProvider).valueOrNull;
     return SelectionArea(
       child: Scaffold(
         body: SingleChildScrollView(
@@ -63,11 +62,9 @@ class HomePage extends ConsumerWidget {
                     else
                       ElevatedButton(
                         onPressed: () async {
-                          final response = await FirebaseFunctions.instanceFor(
-                            region: 'asia-northeast1',
-                          ).httpsCallable('createStripeAccount').call();
-
-                          await launchUrl(Uri.parse(response.data as String));
+                          final url =
+                              await ref.read(P.stripeAccountUrlProvider.future);
+                          await launchUrl(Uri.parse(url));
                         },
                         child: const Text('アカウント情報を入力'),
                       ),
@@ -84,6 +81,31 @@ class HomePage extends ConsumerWidget {
                       style: TextStyle(
                         fontSize: 16,
                       ),
+                    ),
+                    const SizedBox(height: 32),
+                    ElevatedButton(
+                      onPressed: () async {
+                        final url = await ref
+                            .read(P.stripeRepository)
+                            .createStripeCheckoutUrl(
+                              title: 'テスト商品',
+                              amount: 100,
+                              accountId: 'acct_1N1O4WB3ymTKQwgC',
+                              customerId: 'cus_Ns8cpsew2Oe8kU',
+                              documentId: 'testId',
+                            );
+                        await launchUrl(Uri.parse(url));
+                      },
+                      child: const Text('購入テスト'),
+                    ),
+                    const SizedBox(height: 32),
+                    ElevatedButton(
+                      onPressed: () async {
+                        final url =
+                            await ref.read(P.stripeLoginUrlProvider.future);
+                        await launchUrl(Uri.parse(url));
+                      },
+                      child: const Text('ダッシュボードを見る'),
                     ),
                     const SizedBox(height: 32),
                   ],
