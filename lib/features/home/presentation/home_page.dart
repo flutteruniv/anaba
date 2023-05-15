@@ -124,6 +124,10 @@ class HomePage extends ConsumerWidget {
                       child: const Text('ダッシュボードを見る'),
                     ),
                     const SizedBox(height: 32),
+                    ElevatedButton(
+                      onPressed: () async {},
+                      child: const Text('anaba入力フォームテスト'),
+                    ),
                   ],
                 ),
               ),
