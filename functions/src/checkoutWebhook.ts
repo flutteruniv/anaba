@@ -53,6 +53,10 @@ const fulfillOrder = async (session: any) => {
 
   const qds = await admin.firestore().collection(`users`).where(`customerId`, `==`, customerId).get()
 
+  if (qds.empty) {
+    return
+  }
+
   // 購入したドキュメントIDを追加
   await qds.docs[0].ref.update({
     anabas: admin.firestore.FieldValue.arrayUnion(documentId)
