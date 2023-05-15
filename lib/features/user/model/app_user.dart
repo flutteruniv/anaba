@@ -9,6 +9,7 @@ class AppUser with _$AppUser {
     @Default(false) bool detailsSubmitted,
     String? customerId,
     String? stripeAccountId,
+    String? email,
   }) = _AppUser;
 
   factory AppUser.fromJson(Map<String, dynamic> json) =>

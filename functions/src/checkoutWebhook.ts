@@ -22,14 +22,15 @@ export const checkoutWebHook = functions.region(`asia-northeast1`).https.onReque
       const session: any = event.data.object
 
       if (session.payment_status === `paid`) {
-        fulfillOrder(session)
+        await fulfillOrder(session)
       }
-
+      response.status(200).end()
       break
     }
     case `checkout.session.async_payment_succeeded`: {
       const session = event.data.object
-      fulfillOrder(session)
+      await fulfillOrder(session)
+      response.status(200).end()
       break
     }
 
@@ -56,6 +57,4 @@ const fulfillOrder = async (session: any) => {
   await qds.docs[0].ref.update({
     anabas: admin.firestore.FieldValue.arrayUnion(documentId)
   })
-
-  console.log(`Complete`)
 }

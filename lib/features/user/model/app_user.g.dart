@@ -10,6 +10,7 @@ _$_AppUser _$$_AppUserFromJson(Map<String, dynamic> json) => _$_AppUser(
       detailsSubmitted: json['detailsSubmitted'] as bool? ?? false,
       customerId: json['customerId'] as String?,
       stripeAccountId: json['stripeAccountId'] as String?,
+      email: json['email'] as String?,
     );
 
 Map<String, dynamic> _$$_AppUserToJson(_$_AppUser instance) =>
@@ -17,4 +18,5 @@ Map<String, dynamic> _$$_AppUserToJson(_$_AppUser instance) =>
       'detailsSubmitted': instance.detailsSubmitted,
       'customerId': instance.customerId,
       'stripeAccountId': instance.stripeAccountId,
+      'email': instance.email,
     };

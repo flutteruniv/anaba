@@ -31,6 +31,7 @@ void main() async {
   await FirebaseAnalytics.instance.logEvent(
     name: 'app_start',
   );
+
   usePathUrlStrategy();
   runApp(
     const ProviderScope(

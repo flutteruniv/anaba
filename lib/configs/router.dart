@@ -13,7 +13,6 @@ final routerProvider = Provider((ref) {
     ],
     routes: [
       GoRoute(
-        name: 'home',
         path: HomePage.relativePath,
         pageBuilder: (context, state) => const NoTransitionPage(
           child: HomePage(),

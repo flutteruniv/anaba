@@ -23,6 +23,7 @@ mixin _$AppUser {
   bool get detailsSubmitted => throw _privateConstructorUsedError;
   String? get customerId => throw _privateConstructorUsedError;
   String? get stripeAccountId => throw _privateConstructorUsedError;
+  String? get email => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +36,10 @@ abstract class $AppUserCopyWith<$Res> {
       _$AppUserCopyWithImpl<$Res, AppUser>;
   @useResult
   $Res call(
-      {bool detailsSubmitted, String? customerId, String? stripeAccountId});
+      {bool detailsSubmitted,
+      String? customerId,
+      String? stripeAccountId,
+      String? email});
 }
 
 /// @nodoc
@@ -54,6 +58,7 @@ class _$AppUserCopyWithImpl<$Res, $Val extends AppUser>
     Object? detailsSubmitted = null,
     Object? customerId = freezed,
     Object? stripeAccountId = freezed,
+    Object? email = freezed,
   }) {
     return _then(_value.copyWith(
       detailsSubmitted: null == detailsSubmitted
@@ -68,6 +73,10 @@ class _$AppUserCopyWithImpl<$Res, $Val extends AppUser>
           ? _value.stripeAccountId
           : stripeAccountId // ignore: cast_nullable_to_non_nullable
               as String?,
+      email: freezed == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -80,7 +89,10 @@ abstract class _$$_AppUserCopyWith<$Res> implements $AppUserCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {bool detailsSubmitted, String? customerId, String? stripeAccountId});
+      {bool detailsSubmitted,
+      String? customerId,
+      String? stripeAccountId,
+      String? email});
 }
 
 /// @nodoc
@@ -96,6 +108,7 @@ class __$$_AppUserCopyWithImpl<$Res>
     Object? detailsSubmitted = null,
     Object? customerId = freezed,
     Object? stripeAccountId = freezed,
+    Object? email = freezed,
   }) {
     return _then(_$_AppUser(
       detailsSubmitted: null == detailsSubmitted
@@ -110,6 +123,10 @@ class __$$_AppUserCopyWithImpl<$Res>
           ? _value.stripeAccountId
           : stripeAccountId // ignore: cast_nullable_to_non_nullable
               as String?,
+      email: freezed == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -118,7 +135,10 @@ class __$$_AppUserCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_AppUser implements _AppUser {
   const _$_AppUser(
-      {this.detailsSubmitted = false, this.customerId, this.stripeAccountId});
+      {this.detailsSubmitted = false,
+      this.customerId,
+      this.stripeAccountId,
+      this.email});
 
   factory _$_AppUser.fromJson(Map<String, dynamic> json) =>
       _$$_AppUserFromJson(json);
@@ -130,10 +150,12 @@ class _$_AppUser implements _AppUser {
   final String? customerId;
   @override
   final String? stripeAccountId;
+  @override
+  final String? email;
 
   @override
   String toString() {
-    return 'AppUser(detailsSubmitted: $detailsSubmitted, customerId: $customerId, stripeAccountId: $stripeAccountId)';
+    return 'AppUser(detailsSubmitted: $detailsSubmitted, customerId: $customerId, stripeAccountId: $stripeAccountId, email: $email)';
   }
 
   @override
@@ -146,13 +168,14 @@ class _$_AppUser implements _AppUser {
             (identical(other.customerId, customerId) ||
                 other.customerId == customerId) &&
             (identical(other.stripeAccountId, stripeAccountId) ||
-                other.stripeAccountId == stripeAccountId));
+                other.stripeAccountId == stripeAccountId) &&
+            (identical(other.email, email) || other.email == email));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, detailsSubmitted, customerId, stripeAccountId);
+  int get hashCode => Object.hash(
+      runtimeType, detailsSubmitted, customerId, stripeAccountId, email);
 
   @JsonKey(ignore: true)
   @override
@@ -172,7 +195,8 @@ abstract class _AppUser implements AppUser {
   const factory _AppUser(
       {final bool detailsSubmitted,
       final String? customerId,
-      final String? stripeAccountId}) = _$_AppUser;
+      final String? stripeAccountId,
+      final String? email}) = _$_AppUser;
 
   factory _AppUser.fromJson(Map<String, dynamic> json) = _$_AppUser.fromJson;
 
@@ -182,6 +206,8 @@ abstract class _AppUser implements AppUser {
   String? get customerId;
   @override
   String? get stripeAccountId;
+  @override
+  String? get email;
   @override
   @JsonKey(ignore: true)
   _$$_AppUserCopyWith<_$_AppUser> get copyWith =>

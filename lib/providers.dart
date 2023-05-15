@@ -1,9 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cloud_functions/cloud_functions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 
 import 'features/stripe/stripe_repository.dart';
+import 'features/user/model/app_user.dart';
 
 class P {
   /// StripeのAccountを作成するURLを作成する
@@ -18,7 +19,7 @@ class P {
 
   /// FirebaseAuthでログイン中のUser情報
   static final userProvider = StreamProvider(
-    (ref) => ref.watch(_firebaseAuthProvider).authStateChanges(),
+    (ref) => ref.watch(firebaseAuthProvider).authStateChanges(),
   );
 
   /// ユーザーがログイン済みかどうか
@@ -31,17 +32,17 @@ class P {
       final googleProvider = GoogleAuthProvider();
 
       final userCredential =
-          await ref.read(_firebaseAuthProvider).signInWithPopup(
+          await ref.read(firebaseAuthProvider).signInWithPopup(
                 googleProvider,
               );
+
       return userCredential;
     };
   });
 
   static final signOutProvider = Provider((ref) {
     return () async {
-      await ref.read(_googleSignInProvider).signOut();
-      await ref.read(_firebaseAuthProvider).signOut();
+      await ref.read(firebaseAuthProvider).signOut();
     };
   });
 
@@ -57,6 +58,15 @@ class P {
     ),
   );
 
-  static final _googleSignInProvider = Provider((_) => GoogleSignIn());
-  static final _firebaseAuthProvider = Provider((_) => FirebaseAuth.instance);
+  static final userReference = Provider(
+    (ref) =>
+        ref.watch(firebaseFirestoreProvider).collection('users').withConverter(
+              fromFirestore: (ds, _) => AppUser.fromJson(ds.data()!),
+              toFirestore: (data, _) => data.toJson(),
+            ),
+  );
+
+  static final firebaseFirestoreProvider =
+      Provider((_) => FirebaseFirestore.instance);
+  static final firebaseAuthProvider = Provider((_) => FirebaseAuth.instance);
 }

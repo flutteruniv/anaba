@@ -17,6 +17,18 @@
       ]
     },
     {
+      "name": "本番版デバッグビルド",
+      "request": "launch",
+      "type": "dart",
+      "args": [
+        "--web-port",
+        "5000",
+        "--web-renderer",
+        "html",
+        "--dart-define=FLAVOR=prod"
+      ]
+    },
+    {
       "name": "本番版リリースビルド",
       "request": "launch",
       "type": "dart",

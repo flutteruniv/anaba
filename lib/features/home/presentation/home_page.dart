@@ -53,22 +53,35 @@ class HomePage extends ConsumerWidget {
                     ),
                     const SizedBox(height: 32),
                     if (user == null)
-                      ElevatedButton(
-                        onPressed: () {
-                          AuthDialog.show(context);
-                        },
-                        child: const Text('事前登録'),
-                      )
-                    else
-                      ElevatedButton(
-                        onPressed: () async {
-                          final url =
-                              await ref.read(P.stripeAccountUrlProvider.future);
-                          await launchUrl(Uri.parse(url));
-                        },
-                        child: const Text('アカウント情報を入力'),
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 32),
+                        child: ElevatedButton(
+                          onPressed: () {
+                            AuthDialog.show(context);
+                          },
+                          child: const Text('事前登録'),
+                        ),
                       ),
-                    const SizedBox(height: 32),
+                    if (user != null)
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 32),
+                        child: ElevatedButton(
+                          onPressed: () async {
+                            final url = await ref
+                                .read(P.stripeAccountUrlProvider.future);
+                            await launchUrl(Uri.parse(url));
+                          },
+                          child: const Text('アカウント情報を入力'),
+                        ),
+                      ),
+                    if (user != null)
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 32),
+                        child: ElevatedButton(
+                          onPressed: ref.read(P.signOutProvider),
+                          child: const Text('ログアウト'),
+                        ),
+                      ),
                     const Text(
                       '雑誌やサイトに載ったランキングでは満足できない。平均化された情報はいらない、誰かの熱狂的なおすすめが知りたい。そんなちょっと「あまのじゃく」なあなたに向けたサービスを開発中。',
                       style: TextStyle(
@@ -85,13 +98,16 @@ class HomePage extends ConsumerWidget {
                     const SizedBox(height: 32),
                     ElevatedButton(
                       onPressed: () async {
+                        // FIXME(kenta-wakasa): これはセキュリティ的には危険
+                        /// functions側で customerId は取得した方がいい。
+                        /// つまり dcumentId だけを指定して購入する形式にしたほうがいい。
                         final url = await ref
                             .read(P.stripeRepository)
                             .createStripeCheckoutUrl(
                               title: 'テスト商品',
                               amount: 100,
-                              accountId: 'acct_1N1O4WB3ymTKQwgC',
-                              customerId: 'cus_Ns8cpsew2Oe8kU',
+                              accountId: 'acct_1N7ei8BOZVbq0TLE',
+                              customerId: 'cus_NtRb8N8Pp8pGJi',
                               documentId: 'testId',
                             );
                         await launchUrl(Uri.parse(url));
