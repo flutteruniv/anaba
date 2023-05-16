@@ -139,6 +139,12 @@ class HomePage extends ConsumerWidget {
                       child: const Text('anaba入力フォームテスト'),
                     ),
                     const SizedBox(height: 32),
+                    const Text(
+                      '追加文書',
+                      style: TextStyle(
+                        fontSize: 16,
+                      ),
+                    ),
                   ],
                 ),
               ),
