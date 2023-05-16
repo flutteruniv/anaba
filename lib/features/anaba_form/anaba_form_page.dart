@@ -14,11 +14,19 @@ class AnabaFormPage extends ConsumerStatefulWidget {
 }
 
 class _AnabaFormPageState extends ConsumerState<AnabaFormPage> {
-
   final titleController = TextEditingController();
   final publicInfoController = TextEditingController();
   final privateInfoController = TextEditingController();
   final priceController = TextEditingController();
+
+  @override
+  void dispose() {
+    titleController.dispose();
+    publicInfoController.dispose();
+    privateInfoController.dispose();
+    priceController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
