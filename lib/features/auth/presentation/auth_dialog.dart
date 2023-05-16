@@ -1,5 +1,9 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:sign_button/constants.dart';
+import 'package:sign_button/create_button.dart';
 
-<<<<<<< HEAD
 import '../../../providers.dart';
 
 class AuthDialog extends ConsumerStatefulWidget {
@@ -51,5 +55,3 @@ class _AuthDialogState extends ConsumerState<AuthDialog> {
     );
   }
 }
-=======
->>>>>>> 64e8504 (“コミットテスト”)

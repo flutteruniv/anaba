@@ -1,3 +1,6 @@
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
+
 import 'configs/flavor.dart';
 
 /// Default [FirebaseOptions] for use with your Firebase apps.

@@ -1,5 +1,8 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_analytics/observer.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
-<<<<<<< HEAD
 import '../features/anaba_form/anaba_form_page.dart';
 import '../features/home/presentation/home_page.dart';
 
@@ -26,5 +29,3 @@ final routerProvider = Provider((ref) {
     ],
   );
 });
-=======
->>>>>>> 64e8504 (“コミットテスト”)
