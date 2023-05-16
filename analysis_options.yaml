@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 include: package:pedantic_mono/analysis_options.yaml
 
 linter:
@@ -18,3 +19,5 @@ analyzer:
     - custom_lint
   errors:
     invalid_annotation_target: ignore
+=======
+>>>>>>> 64e8504 (“コミットテスト”)

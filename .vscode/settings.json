@@ -1,4 +1,13 @@
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+  "cSpell.words": [
+    "anaba"
+  ]
+}
+=======
+>>>>>>> 64e8504 (“コミットテスト”)
   "cSpell.words": ["anaba"],
   "eslint.workingDirectories": ["./functions"],
   "editor.tabSize": 2,
@@ -15,3 +24,7 @@
     "files.trimTrailingWhitespace": false
   }
 }
+<<<<<<< HEAD
+=======
+>>>>>>> d699575 (“コミットテスト”)
+>>>>>>> 64e8504 (“コミットテスト”)

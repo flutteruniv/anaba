@@ -29,8 +29,11 @@ export const createStripeAccount = functions.region(`asia-northeast1`).https.onC
     }
   })
 
+<<<<<<< HEAD
   // TODO(kenta-wakasa): この時点でstripeAccountIdを保存せずに、webhookの方でやるべきかも。
   // それか、この処理はアカウント作成が完了している時絶対に呼び出されないようにするべきかも。
+=======
+>>>>>>> 64e8504 (“コミットテスト”)
   await admin.firestore().collection(`users`).doc(uid).set(
     {
       stripeAccountId: account.id
