@@ -1,5 +1,3 @@
-
-<<<<<<< HEAD
 import 'configs/flavor.dart';
 
 /// Default [FirebaseOptions] for use with your Firebase apps.
@@ -70,5 +68,3 @@ class DefaultFirebaseOptions {
           measurementId: 'G-HK2EQZ8W40',
         );
 }
-=======
->>>>>>> 64e8504 (“コミットテスト”)
