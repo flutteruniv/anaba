@@ -4,18 +4,23 @@ import 'package:go_router/go_router.dart';
 
 import '../home/presentation/home_page.dart';
 
-class AnabaFormPage extends ConsumerWidget {
+class AnabaFormPage extends ConsumerStatefulWidget {
   const AnabaFormPage({super.key});
 
   static const relativePath = '/anaba_form';
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final titleController = TextEditingController();
-    final publicInfoController = TextEditingController();
-    final privateInfoController = TextEditingController();
-    final priceController = TextEditingController();
+  ConsumerState<AnabaFormPage> createState() => _AnabaFormPageState();
+}
 
+class _AnabaFormPageState extends ConsumerState<AnabaFormPage> {
+  final titleController = TextEditingController();
+  final publicInfoController = TextEditingController();
+  final privateInfoController = TextEditingController();
+  final priceController = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
         child: Center(
