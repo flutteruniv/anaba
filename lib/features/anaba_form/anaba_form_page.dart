@@ -14,6 +14,7 @@ class AnabaFormPage extends ConsumerStatefulWidget {
 }
 
 class _AnabaFormPageState extends ConsumerState<AnabaFormPage> {
+
   final titleController = TextEditingController();
   final publicInfoController = TextEditingController();
   final privateInfoController = TextEditingController();
