@@ -2,6 +2,7 @@
 
 import 'dart:html' as html;
 
+import 'package:chat_gpt_sdk/chat_gpt_sdk.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +14,12 @@ import 'configs/flavor.dart';
 import 'configs/router.dart';
 import 'configs/theme.dart';
 import 'firebase_options.dart';
+
+const kOpenApiKey = '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';
+
+final openAI = OpenAI.instance.build(
+  token: kOpenApiKey,
+);
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

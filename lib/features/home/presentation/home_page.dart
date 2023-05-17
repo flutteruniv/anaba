@@ -5,6 +5,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../../providers.dart';
 import '../../anaba_form/anaba_form_page.dart';
+import '../../anaba_gpt/anaba_gpt_page.dart';
 import '../../auth/presentation/auth_dialog.dart';
 
 class HomePage extends ConsumerWidget {
@@ -139,12 +140,20 @@ class HomePage extends ConsumerWidget {
                       child: const Text('anaba入力フォームテスト'),
                     ),
                     const SizedBox(height: 32),
-                    const Text(
-                      '追加文書',
-                      style: TextStyle(
-                        fontSize: 16,
-                      ),
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute<void>(
+                            builder: (context) => const AnabaGptPage(
+                              title: 'GPT',
+                            ),
+                          ),
+                        );
+                      },
+                      child: const Text('anaba GPT'),
                     ),
+                    const SizedBox(height: 32),
                   ],
                 ),
               ),
