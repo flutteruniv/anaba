@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../../configs/union_timestamp.dart';
 
 part 'anaba.freezed.dart';
 part 'anaba.g.dart';
@@ -6,15 +7,36 @@ part 'anaba.g.dart';
 @freezed
 class Anaba with _$Anaba {
   const factory Anaba({
-    String? createdAt,
-    String? updatedAt,
-    String? title,
-    String? description,
-    String? contents,
-    String? mapId,
-    List<String>? imageUrls,
-    String? author,
-    int? price,
+    /// 作成日
+    @unionTimestampConverter
+    @Default(UnionTimestamp.serverTimestamp())
+        UnionTimestamp createdAt,
+
+    /// 更新日
+    @alwaysUseServerTimestampUnionTimestampConverter
+    @Default(UnionTimestamp.serverTimestamp())
+        UnionTimestamp updatedAt,
+
+    /// タイトル
+    required String title,
+
+    /// 非購入者を含めた全員が見れるコンテンツ
+    required String nonPurchasedContent,
+
+    /// 購入者のみ見れるコンテンツ
+    required String purchasedContent,
+
+    /// googleMapに登録されているID
+    required int googleMapId,
+
+    /// 表示したい画像のURL
+    required List<String> imageUrls,
+
+    /// 作者
+    required String author,
+
+    /// 価格
+    required int price,
   }) = _Anaba;
 
   factory Anaba.fromJson(Map<String, dynamic> json) => _$AnabaFromJson(json);

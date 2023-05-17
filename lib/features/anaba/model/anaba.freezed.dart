@@ -20,15 +20,34 @@ Anaba _$AnabaFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Anaba {
-  String? get createdAt => throw _privateConstructorUsedError;
-  String? get updatedAt => throw _privateConstructorUsedError;
-  String? get title => throw _privateConstructorUsedError;
-  String? get description => throw _privateConstructorUsedError;
-  String? get contents => throw _privateConstructorUsedError;
-  String? get mapId => throw _privateConstructorUsedError;
-  List<String>? get imageUrls => throw _privateConstructorUsedError;
-  String? get author => throw _privateConstructorUsedError;
-  int? get price => throw _privateConstructorUsedError;
+  /// 作成日
+  @unionTimestampConverter
+  UnionTimestamp get createdAt => throw _privateConstructorUsedError;
+
+  /// 更新日
+  @alwaysUseServerTimestampUnionTimestampConverter
+  UnionTimestamp get updatedAt => throw _privateConstructorUsedError;
+
+  /// タイトル
+  String get title => throw _privateConstructorUsedError;
+
+  /// 非購入者を含めた全員が見れるコンテンツ
+  String get nonPurchasedContent => throw _privateConstructorUsedError;
+
+  /// 購入者のみ見れるコンテンツ
+  String get purchasedContent => throw _privateConstructorUsedError;
+
+  /// googleMapに登録されているID
+  int get googleMapId => throw _privateConstructorUsedError;
+
+  /// 表示したい画像のURL
+  List<String> get imageUrls => throw _privateConstructorUsedError;
+
+  /// 作者
+  String get author => throw _privateConstructorUsedError;
+
+  /// 価格
+  int get price => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -41,15 +60,18 @@ abstract class $AnabaCopyWith<$Res> {
       _$AnabaCopyWithImpl<$Res, Anaba>;
   @useResult
   $Res call(
-      {String? createdAt,
-      String? updatedAt,
-      String? title,
-      String? description,
-      String? contents,
-      String? mapId,
-      List<String>? imageUrls,
-      String? author,
-      int? price});
+      {@unionTimestampConverter UnionTimestamp createdAt,
+      @alwaysUseServerTimestampUnionTimestampConverter UnionTimestamp updatedAt,
+      String title,
+      String nonPurchasedContent,
+      String purchasedContent,
+      int googleMapId,
+      List<String> imageUrls,
+      String author,
+      int price});
+
+  $UnionTimestampCopyWith<$Res> get createdAt;
+  $UnionTimestampCopyWith<$Res> get updatedAt;
 }
 
 /// @nodoc
@@ -65,54 +87,70 @@ class _$AnabaCopyWithImpl<$Res, $Val extends Anaba>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? createdAt = freezed,
-    Object? updatedAt = freezed,
-    Object? title = freezed,
-    Object? description = freezed,
-    Object? contents = freezed,
-    Object? mapId = freezed,
-    Object? imageUrls = freezed,
-    Object? author = freezed,
-    Object? price = freezed,
+    Object? createdAt = null,
+    Object? updatedAt = null,
+    Object? title = null,
+    Object? nonPurchasedContent = null,
+    Object? purchasedContent = null,
+    Object? googleMapId = null,
+    Object? imageUrls = null,
+    Object? author = null,
+    Object? price = null,
   }) {
     return _then(_value.copyWith(
-      createdAt: freezed == createdAt
+      createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as String?,
-      updatedAt: freezed == updatedAt
+              as UnionTimestamp,
+      updatedAt: null == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
-              as String?,
-      title: freezed == title
+              as UnionTimestamp,
+      title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
-              as String?,
-      description: freezed == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String?,
-      contents: freezed == contents
-          ? _value.contents
-          : contents // ignore: cast_nullable_to_non_nullable
-              as String?,
-      mapId: freezed == mapId
-          ? _value.mapId
-          : mapId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      imageUrls: freezed == imageUrls
+              as String,
+      nonPurchasedContent: null == nonPurchasedContent
+          ? _value.nonPurchasedContent
+          : nonPurchasedContent // ignore: cast_nullable_to_non_nullable
+              as String,
+      purchasedContent: null == purchasedContent
+          ? _value.purchasedContent
+          : purchasedContent // ignore: cast_nullable_to_non_nullable
+              as String,
+      googleMapId: null == googleMapId
+          ? _value.googleMapId
+          : googleMapId // ignore: cast_nullable_to_non_nullable
+              as int,
+      imageUrls: null == imageUrls
           ? _value.imageUrls
           : imageUrls // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
-      author: freezed == author
+              as List<String>,
+      author: null == author
           ? _value.author
           : author // ignore: cast_nullable_to_non_nullable
-              as String?,
-      price: freezed == price
+              as String,
+      price: null == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $UnionTimestampCopyWith<$Res> get createdAt {
+    return $UnionTimestampCopyWith<$Res>(_value.createdAt, (value) {
+      return _then(_value.copyWith(createdAt: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $UnionTimestampCopyWith<$Res> get updatedAt {
+    return $UnionTimestampCopyWith<$Res>(_value.updatedAt, (value) {
+      return _then(_value.copyWith(updatedAt: value) as $Val);
+    });
   }
 }
 
@@ -123,15 +161,20 @@ abstract class _$$_AnabaCopyWith<$Res> implements $AnabaCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String? createdAt,
-      String? updatedAt,
-      String? title,
-      String? description,
-      String? contents,
-      String? mapId,
-      List<String>? imageUrls,
-      String? author,
-      int? price});
+      {@unionTimestampConverter UnionTimestamp createdAt,
+      @alwaysUseServerTimestampUnionTimestampConverter UnionTimestamp updatedAt,
+      String title,
+      String nonPurchasedContent,
+      String purchasedContent,
+      int googleMapId,
+      List<String> imageUrls,
+      String author,
+      int price});
+
+  @override
+  $UnionTimestampCopyWith<$Res> get createdAt;
+  @override
+  $UnionTimestampCopyWith<$Res> get updatedAt;
 }
 
 /// @nodoc
@@ -143,53 +186,53 @@ class __$$_AnabaCopyWithImpl<$Res> extends _$AnabaCopyWithImpl<$Res, _$_Anaba>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? createdAt = freezed,
-    Object? updatedAt = freezed,
-    Object? title = freezed,
-    Object? description = freezed,
-    Object? contents = freezed,
-    Object? mapId = freezed,
-    Object? imageUrls = freezed,
-    Object? author = freezed,
-    Object? price = freezed,
+    Object? createdAt = null,
+    Object? updatedAt = null,
+    Object? title = null,
+    Object? nonPurchasedContent = null,
+    Object? purchasedContent = null,
+    Object? googleMapId = null,
+    Object? imageUrls = null,
+    Object? author = null,
+    Object? price = null,
   }) {
     return _then(_$_Anaba(
-      createdAt: freezed == createdAt
+      createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as String?,
-      updatedAt: freezed == updatedAt
+              as UnionTimestamp,
+      updatedAt: null == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
-              as String?,
-      title: freezed == title
+              as UnionTimestamp,
+      title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
-              as String?,
-      description: freezed == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String?,
-      contents: freezed == contents
-          ? _value.contents
-          : contents // ignore: cast_nullable_to_non_nullable
-              as String?,
-      mapId: freezed == mapId
-          ? _value.mapId
-          : mapId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      imageUrls: freezed == imageUrls
+              as String,
+      nonPurchasedContent: null == nonPurchasedContent
+          ? _value.nonPurchasedContent
+          : nonPurchasedContent // ignore: cast_nullable_to_non_nullable
+              as String,
+      purchasedContent: null == purchasedContent
+          ? _value.purchasedContent
+          : purchasedContent // ignore: cast_nullable_to_non_nullable
+              as String,
+      googleMapId: null == googleMapId
+          ? _value.googleMapId
+          : googleMapId // ignore: cast_nullable_to_non_nullable
+              as int,
+      imageUrls: null == imageUrls
           ? _value._imageUrls
           : imageUrls // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
-      author: freezed == author
+              as List<String>,
+      author: null == author
           ? _value.author
           : author // ignore: cast_nullable_to_non_nullable
-              as String?,
-      price: freezed == price
+              as String,
+      price: null == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
     ));
   }
 }
@@ -198,50 +241,72 @@ class __$$_AnabaCopyWithImpl<$Res> extends _$AnabaCopyWithImpl<$Res, _$_Anaba>
 @JsonSerializable()
 class _$_Anaba implements _Anaba {
   const _$_Anaba(
-      {this.createdAt,
-      this.updatedAt,
-      this.title,
-      this.description,
-      this.contents,
-      this.mapId,
-      final List<String>? imageUrls,
-      this.author,
-      this.price})
+      {@unionTimestampConverter
+          this.createdAt = const UnionTimestamp.serverTimestamp(),
+      @alwaysUseServerTimestampUnionTimestampConverter
+          this.updatedAt = const UnionTimestamp.serverTimestamp(),
+      required this.title,
+      required this.nonPurchasedContent,
+      required this.purchasedContent,
+      required this.googleMapId,
+      required final List<String> imageUrls,
+      required this.author,
+      required this.price})
       : _imageUrls = imageUrls;
 
   factory _$_Anaba.fromJson(Map<String, dynamic> json) =>
       _$$_AnabaFromJson(json);
 
+  /// 作成日
   @override
-  final String? createdAt;
+  @JsonKey()
+  @unionTimestampConverter
+  final UnionTimestamp createdAt;
+
+  /// 更新日
   @override
-  final String? updatedAt;
+  @JsonKey()
+  @alwaysUseServerTimestampUnionTimestampConverter
+  final UnionTimestamp updatedAt;
+
+  /// タイトル
   @override
-  final String? title;
+  final String title;
+
+  /// 非購入者を含めた全員が見れるコンテンツ
   @override
-  final String? description;
+  final String nonPurchasedContent;
+
+  /// 購入者のみ見れるコンテンツ
   @override
-  final String? contents;
+  final String purchasedContent;
+
+  /// googleMapに登録されているID
   @override
-  final String? mapId;
-  final List<String>? _imageUrls;
+  final int googleMapId;
+
+  /// 表示したい画像のURL
+  final List<String> _imageUrls;
+
+  /// 表示したい画像のURL
   @override
-  List<String>? get imageUrls {
-    final value = _imageUrls;
-    if (value == null) return null;
+  List<String> get imageUrls {
     if (_imageUrls is EqualUnmodifiableListView) return _imageUrls;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
+    return EqualUnmodifiableListView(_imageUrls);
   }
 
+  /// 作者
   @override
-  final String? author;
+  final String author;
+
+  /// 価格
   @override
-  final int? price;
+  final int price;
 
   @override
   String toString() {
-    return 'Anaba(createdAt: $createdAt, updatedAt: $updatedAt, title: $title, description: $description, contents: $contents, mapId: $mapId, imageUrls: $imageUrls, author: $author, price: $price)';
+    return 'Anaba(createdAt: $createdAt, updatedAt: $updatedAt, title: $title, nonPurchasedContent: $nonPurchasedContent, purchasedContent: $purchasedContent, googleMapId: $googleMapId, imageUrls: $imageUrls, author: $author, price: $price)';
   }
 
   @override
@@ -254,11 +319,12 @@ class _$_Anaba implements _Anaba {
             (identical(other.updatedAt, updatedAt) ||
                 other.updatedAt == updatedAt) &&
             (identical(other.title, title) || other.title == title) &&
-            (identical(other.description, description) ||
-                other.description == description) &&
-            (identical(other.contents, contents) ||
-                other.contents == contents) &&
-            (identical(other.mapId, mapId) || other.mapId == mapId) &&
+            (identical(other.nonPurchasedContent, nonPurchasedContent) ||
+                other.nonPurchasedContent == nonPurchasedContent) &&
+            (identical(other.purchasedContent, purchasedContent) ||
+                other.purchasedContent == purchasedContent) &&
+            (identical(other.googleMapId, googleMapId) ||
+                other.googleMapId == googleMapId) &&
             const DeepCollectionEquality()
                 .equals(other._imageUrls, _imageUrls) &&
             (identical(other.author, author) || other.author == author) &&
@@ -272,9 +338,9 @@ class _$_Anaba implements _Anaba {
       createdAt,
       updatedAt,
       title,
-      description,
-      contents,
-      mapId,
+      nonPurchasedContent,
+      purchasedContent,
+      googleMapId,
       const DeepCollectionEquality().hash(_imageUrls),
       author,
       price);
@@ -295,36 +361,58 @@ class _$_Anaba implements _Anaba {
 
 abstract class _Anaba implements Anaba {
   const factory _Anaba(
-      {final String? createdAt,
-      final String? updatedAt,
-      final String? title,
-      final String? description,
-      final String? contents,
-      final String? mapId,
-      final List<String>? imageUrls,
-      final String? author,
-      final int? price}) = _$_Anaba;
+      {@unionTimestampConverter
+          final UnionTimestamp createdAt,
+      @alwaysUseServerTimestampUnionTimestampConverter
+          final UnionTimestamp updatedAt,
+      required final String title,
+      required final String nonPurchasedContent,
+      required final String purchasedContent,
+      required final int googleMapId,
+      required final List<String> imageUrls,
+      required final String author,
+      required final int price}) = _$_Anaba;
 
   factory _Anaba.fromJson(Map<String, dynamic> json) = _$_Anaba.fromJson;
 
   @override
-  String? get createdAt;
+
+  /// 作成日
+  @unionTimestampConverter
+  UnionTimestamp get createdAt;
   @override
-  String? get updatedAt;
+
+  /// 更新日
+  @alwaysUseServerTimestampUnionTimestampConverter
+  UnionTimestamp get updatedAt;
   @override
-  String? get title;
+
+  /// タイトル
+  String get title;
   @override
-  String? get description;
+
+  /// 非購入者を含めた全員が見れるコンテンツ
+  String get nonPurchasedContent;
   @override
-  String? get contents;
+
+  /// 購入者のみ見れるコンテンツ
+  String get purchasedContent;
   @override
-  String? get mapId;
+
+  /// googleMapに登録されているID
+  int get googleMapId;
   @override
-  List<String>? get imageUrls;
+
+  /// 表示したい画像のURL
+  List<String> get imageUrls;
   @override
-  String? get author;
+
+  /// 作者
+  String get author;
   @override
-  int? get price;
+
+  /// 価格
+  int get price;
   @override
   @JsonKey(ignore: true)
   _$$_AnabaCopyWith<_$_Anaba> get copyWith =>
