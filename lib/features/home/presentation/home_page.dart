@@ -146,7 +146,7 @@ class HomePage extends ConsumerWidget {
                           context,
                           MaterialPageRoute<void>(
                             builder: (context) => const AnabaGptPage(
-                              title: 'GPT',
+                              title: 'anaba GPT',
                             ),
                           ),
                         );
