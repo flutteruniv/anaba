@@ -1,5 +1,6 @@
 import 'package:chat_gpt_sdk/chat_gpt_sdk.dart';
 import 'package:flutter/material.dart';
+
 import '../../main.dart';
 
 class AnabaGptPage extends StatefulWidget {
@@ -29,41 +30,44 @@ class _AnabaGptPageState extends State<AnabaGptPage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Column(
-          children: [
-            Row(
-              children: [
-                Expanded(
-                  child: TextField(
-                    controller: _textEditingController,
-                    decoration: const InputDecoration(
-                      enabledBorder: OutlineInputBorder(),
+      body: Padding(
+        padding: const EdgeInsets.all(18.0),
+        child: Center(
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  Expanded(
+                    child: TextField(
+                      controller: _textEditingController,
+                      decoration: const InputDecoration(
+                        enabledBorder: OutlineInputBorder(),
+                      ),
                     ),
                   ),
-                ),
-                IconButton(
-                  onPressed: () async {
-                    setState(() {
-                      _isLoading = true;
-                    });
-                    final answer = await _sendMessage(
-                      _textEditingController.text,
-                    );
-                    setState(() {
-                      _answer = answer;
-                      _isLoading = false;
-                    });
-                    ;
-                  },
-                  icon: Icon(
-                    _isLoading ? Icons.timer : Icons.send,
+                  IconButton(
+                    onPressed: () async {
+                      setState(() {
+                        _isLoading = true;
+                      });
+                      final answer = await _sendMessage(
+                        _textEditingController.text,
+                      );
+                      setState(() {
+                        _answer = answer;
+                        _isLoading = false;
+                      });
+                      ;
+                    },
+                    icon: Icon(
+                      _isLoading ? Icons.timer : Icons.send,
+                    ),
                   ),
-                ),
-              ],
-            ),
-            Text(_answer),
-          ],
+                ],
+              ),
+              Text(_answer),
+            ],
+          ),
         ),
       ),
     );
@@ -73,7 +77,7 @@ class _AnabaGptPageState extends State<AnabaGptPage> {
     final request = CompleteText(
       prompt: message,
       model: Model.textDavinci3,
-      maxTokens: 500,
+      maxTokens: 200,
     );
 
     final response = await openAI.onCompletion(

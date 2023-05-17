@@ -15,7 +15,7 @@ import 'configs/router.dart';
 import 'configs/theme.dart';
 import 'firebase_options.dart';
 
-const kOpenApiKey = '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';
+const kOpenApiKey = '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';
 
 final openAI = OpenAI.instance.build(
   token: kOpenApiKey,

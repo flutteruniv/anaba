@@ -146,12 +146,12 @@ class HomePage extends ConsumerWidget {
                           context,
                           MaterialPageRoute<void>(
                             builder: (context) => const AnabaGptPage(
-                              title: 'anaba GPT',
+                              title: '穴場チャットGPT',
                             ),
                           ),
                         );
                       },
-                      child: const Text('anaba GPT'),
+                      child: const Text('穴場チャットGPT'),
                     ),
                     const SizedBox(height: 32),
                   ],
