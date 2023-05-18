@@ -6,6 +6,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../../providers.dart';
 import '../../anaba_form/anaba_form_page.dart';
 import '../../auth/presentation/auth_dialog.dart';
+import '../../myprofile_page/myprofile_page.dart';
 
 class HomePage extends ConsumerWidget {
   const HomePage({super.key});
@@ -74,6 +75,16 @@ class HomePage extends ConsumerWidget {
                             await launchUrl(Uri.parse(url));
                           },
                           child: const Text('アカウント情報を入力'),
+                        ),
+                      ),
+                    if (user != null)
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 32),
+                        child: ElevatedButton(
+                          onPressed: () async {
+                            context.push(MyProfilePage.relativePath);
+                          },
+                          child: const Text('プロフィールを表示'),
                         ),
                       ),
                     if (user != null)
