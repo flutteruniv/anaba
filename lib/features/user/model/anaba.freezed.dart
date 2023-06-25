@@ -20,15 +20,17 @@ Anaba _$AnabaFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Anaba {
-  String? get createdAt => throw _privateConstructorUsedError;
-  String? get updatedAt => throw _privateConstructorUsedError;
-  String? get title => throw _privateConstructorUsedError;
-  String? get description => throw _privateConstructorUsedError;
-  String? get contents => throw _privateConstructorUsedError;
+  @sealedTimestampConverter
+  SealedTimestamp get createdAt => throw _privateConstructorUsedError;
+  @alwaysUseServerTimestampSealedTimestampConverter
+  SealedTimestamp get updatedAt => throw _privateConstructorUsedError;
+  String get title => throw _privateConstructorUsedError;
+  String get paidContent => throw _privateConstructorUsedError;
+  String get freeContent => throw _privateConstructorUsedError;
+  String get authorUID => throw _privateConstructorUsedError;
   String? get mapId => throw _privateConstructorUsedError;
-  List<String>? get imageUrls => throw _privateConstructorUsedError;
-  String? get author => throw _privateConstructorUsedError;
-  int? get price => throw _privateConstructorUsedError;
+  List<String> get imageUrls => throw _privateConstructorUsedError;
+  int get price => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -41,15 +43,17 @@ abstract class $AnabaCopyWith<$Res> {
       _$AnabaCopyWithImpl<$Res, Anaba>;
   @useResult
   $Res call(
-      {String? createdAt,
-      String? updatedAt,
-      String? title,
-      String? description,
-      String? contents,
+      {@sealedTimestampConverter
+          SealedTimestamp createdAt,
+      @alwaysUseServerTimestampSealedTimestampConverter
+          SealedTimestamp updatedAt,
+      String title,
+      String paidContent,
+      String freeContent,
+      String authorUID,
       String? mapId,
-      List<String>? imageUrls,
-      String? author,
-      int? price});
+      List<String> imageUrls,
+      int price});
 }
 
 /// @nodoc
@@ -65,53 +69,53 @@ class _$AnabaCopyWithImpl<$Res, $Val extends Anaba>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? createdAt = freezed,
-    Object? updatedAt = freezed,
-    Object? title = freezed,
-    Object? description = freezed,
-    Object? contents = freezed,
+    Object? createdAt = null,
+    Object? updatedAt = null,
+    Object? title = null,
+    Object? paidContent = null,
+    Object? freeContent = null,
+    Object? authorUID = null,
     Object? mapId = freezed,
-    Object? imageUrls = freezed,
-    Object? author = freezed,
-    Object? price = freezed,
+    Object? imageUrls = null,
+    Object? price = null,
   }) {
     return _then(_value.copyWith(
-      createdAt: freezed == createdAt
+      createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as String?,
-      updatedAt: freezed == updatedAt
+              as SealedTimestamp,
+      updatedAt: null == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
-              as String?,
-      title: freezed == title
+              as SealedTimestamp,
+      title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
-              as String?,
-      description: freezed == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String?,
-      contents: freezed == contents
-          ? _value.contents
-          : contents // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
+      paidContent: null == paidContent
+          ? _value.paidContent
+          : paidContent // ignore: cast_nullable_to_non_nullable
+              as String,
+      freeContent: null == freeContent
+          ? _value.freeContent
+          : freeContent // ignore: cast_nullable_to_non_nullable
+              as String,
+      authorUID: null == authorUID
+          ? _value.authorUID
+          : authorUID // ignore: cast_nullable_to_non_nullable
+              as String,
       mapId: freezed == mapId
           ? _value.mapId
           : mapId // ignore: cast_nullable_to_non_nullable
               as String?,
-      imageUrls: freezed == imageUrls
+      imageUrls: null == imageUrls
           ? _value.imageUrls
           : imageUrls // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
-      author: freezed == author
-          ? _value.author
-          : author // ignore: cast_nullable_to_non_nullable
-              as String?,
-      price: freezed == price
+              as List<String>,
+      price: null == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
     ) as $Val);
   }
 }
@@ -123,15 +127,17 @@ abstract class _$$_AnabaCopyWith<$Res> implements $AnabaCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String? createdAt,
-      String? updatedAt,
-      String? title,
-      String? description,
-      String? contents,
+      {@sealedTimestampConverter
+          SealedTimestamp createdAt,
+      @alwaysUseServerTimestampSealedTimestampConverter
+          SealedTimestamp updatedAt,
+      String title,
+      String paidContent,
+      String freeContent,
+      String authorUID,
       String? mapId,
-      List<String>? imageUrls,
-      String? author,
-      int? price});
+      List<String> imageUrls,
+      int price});
 }
 
 /// @nodoc
@@ -143,53 +149,53 @@ class __$$_AnabaCopyWithImpl<$Res> extends _$AnabaCopyWithImpl<$Res, _$_Anaba>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? createdAt = freezed,
-    Object? updatedAt = freezed,
-    Object? title = freezed,
-    Object? description = freezed,
-    Object? contents = freezed,
+    Object? createdAt = null,
+    Object? updatedAt = null,
+    Object? title = null,
+    Object? paidContent = null,
+    Object? freeContent = null,
+    Object? authorUID = null,
     Object? mapId = freezed,
-    Object? imageUrls = freezed,
-    Object? author = freezed,
-    Object? price = freezed,
+    Object? imageUrls = null,
+    Object? price = null,
   }) {
     return _then(_$_Anaba(
-      createdAt: freezed == createdAt
+      createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as String?,
-      updatedAt: freezed == updatedAt
+              as SealedTimestamp,
+      updatedAt: null == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
-              as String?,
-      title: freezed == title
+              as SealedTimestamp,
+      title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
-              as String?,
-      description: freezed == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String?,
-      contents: freezed == contents
-          ? _value.contents
-          : contents // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
+      paidContent: null == paidContent
+          ? _value.paidContent
+          : paidContent // ignore: cast_nullable_to_non_nullable
+              as String,
+      freeContent: null == freeContent
+          ? _value.freeContent
+          : freeContent // ignore: cast_nullable_to_non_nullable
+              as String,
+      authorUID: null == authorUID
+          ? _value.authorUID
+          : authorUID // ignore: cast_nullable_to_non_nullable
+              as String,
       mapId: freezed == mapId
           ? _value.mapId
           : mapId // ignore: cast_nullable_to_non_nullable
               as String?,
-      imageUrls: freezed == imageUrls
+      imageUrls: null == imageUrls
           ? _value._imageUrls
           : imageUrls // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
-      author: freezed == author
-          ? _value.author
-          : author // ignore: cast_nullable_to_non_nullable
-              as String?,
-      price: freezed == price
+              as List<String>,
+      price: null == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
     ));
   }
 }
@@ -198,50 +204,58 @@ class __$$_AnabaCopyWithImpl<$Res> extends _$AnabaCopyWithImpl<$Res, _$_Anaba>
 @JsonSerializable()
 class _$_Anaba implements _Anaba {
   const _$_Anaba(
-      {this.createdAt,
-      this.updatedAt,
-      this.title,
-      this.description,
-      this.contents,
+      {@sealedTimestampConverter
+          this.createdAt = const ServerTimestamp(),
+      @alwaysUseServerTimestampSealedTimestampConverter
+          this.updatedAt = const ServerTimestamp(),
+      required this.title,
+      this.paidContent = '',
+      this.freeContent = '',
+      required this.authorUID,
       this.mapId,
-      final List<String>? imageUrls,
-      this.author,
-      this.price})
+      final List<String> imageUrls = const [],
+      this.price = 100})
       : _imageUrls = imageUrls;
 
   factory _$_Anaba.fromJson(Map<String, dynamic> json) =>
       _$$_AnabaFromJson(json);
 
   @override
-  final String? createdAt;
+  @JsonKey()
+  @sealedTimestampConverter
+  final SealedTimestamp createdAt;
   @override
-  final String? updatedAt;
+  @JsonKey()
+  @alwaysUseServerTimestampSealedTimestampConverter
+  final SealedTimestamp updatedAt;
   @override
-  final String? title;
+  final String title;
   @override
-  final String? description;
+  @JsonKey()
+  final String paidContent;
   @override
-  final String? contents;
+  @JsonKey()
+  final String freeContent;
+  @override
+  final String authorUID;
   @override
   final String? mapId;
-  final List<String>? _imageUrls;
+  final List<String> _imageUrls;
   @override
-  List<String>? get imageUrls {
-    final value = _imageUrls;
-    if (value == null) return null;
+  @JsonKey()
+  List<String> get imageUrls {
     if (_imageUrls is EqualUnmodifiableListView) return _imageUrls;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
+    return EqualUnmodifiableListView(_imageUrls);
   }
 
   @override
-  final String? author;
-  @override
-  final int? price;
+  @JsonKey()
+  final int price;
 
   @override
   String toString() {
-    return 'Anaba(createdAt: $createdAt, updatedAt: $updatedAt, title: $title, description: $description, contents: $contents, mapId: $mapId, imageUrls: $imageUrls, author: $author, price: $price)';
+    return 'Anaba(createdAt: $createdAt, updatedAt: $updatedAt, title: $title, paidContent: $paidContent, freeContent: $freeContent, authorUID: $authorUID, mapId: $mapId, imageUrls: $imageUrls, price: $price)';
   }
 
   @override
@@ -254,14 +268,15 @@ class _$_Anaba implements _Anaba {
             (identical(other.updatedAt, updatedAt) ||
                 other.updatedAt == updatedAt) &&
             (identical(other.title, title) || other.title == title) &&
-            (identical(other.description, description) ||
-                other.description == description) &&
-            (identical(other.contents, contents) ||
-                other.contents == contents) &&
+            (identical(other.paidContent, paidContent) ||
+                other.paidContent == paidContent) &&
+            (identical(other.freeContent, freeContent) ||
+                other.freeContent == freeContent) &&
+            (identical(other.authorUID, authorUID) ||
+                other.authorUID == authorUID) &&
             (identical(other.mapId, mapId) || other.mapId == mapId) &&
             const DeepCollectionEquality()
                 .equals(other._imageUrls, _imageUrls) &&
-            (identical(other.author, author) || other.author == author) &&
             (identical(other.price, price) || other.price == price));
   }
 
@@ -272,11 +287,11 @@ class _$_Anaba implements _Anaba {
       createdAt,
       updatedAt,
       title,
-      description,
-      contents,
+      paidContent,
+      freeContent,
+      authorUID,
       mapId,
       const DeepCollectionEquality().hash(_imageUrls),
-      author,
       price);
 
   @JsonKey(ignore: true)
@@ -295,36 +310,40 @@ class _$_Anaba implements _Anaba {
 
 abstract class _Anaba implements Anaba {
   const factory _Anaba(
-      {final String? createdAt,
-      final String? updatedAt,
-      final String? title,
-      final String? description,
-      final String? contents,
+      {@sealedTimestampConverter
+          final SealedTimestamp createdAt,
+      @alwaysUseServerTimestampSealedTimestampConverter
+          final SealedTimestamp updatedAt,
+      required final String title,
+      final String paidContent,
+      final String freeContent,
+      required final String authorUID,
       final String? mapId,
-      final List<String>? imageUrls,
-      final String? author,
-      final int? price}) = _$_Anaba;
+      final List<String> imageUrls,
+      final int price}) = _$_Anaba;
 
   factory _Anaba.fromJson(Map<String, dynamic> json) = _$_Anaba.fromJson;
 
   @override
-  String? get createdAt;
+  @sealedTimestampConverter
+  SealedTimestamp get createdAt;
   @override
-  String? get updatedAt;
+  @alwaysUseServerTimestampSealedTimestampConverter
+  SealedTimestamp get updatedAt;
   @override
-  String? get title;
+  String get title;
   @override
-  String? get description;
+  String get paidContent;
   @override
-  String? get contents;
+  String get freeContent;
+  @override
+  String get authorUID;
   @override
   String? get mapId;
   @override
-  List<String>? get imageUrls;
+  List<String> get imageUrls;
   @override
-  String? get author;
-  @override
-  int? get price;
+  int get price;
   @override
   @JsonKey(ignore: true)
   _$$_AnabaCopyWith<_$_Anaba> get copyWith =>

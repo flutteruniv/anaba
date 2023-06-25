@@ -7,27 +7,34 @@ part of 'anaba.dart';
 // **************************************************************************
 
 _$_Anaba _$$_AnabaFromJson(Map<String, dynamic> json) => _$_Anaba(
-      createdAt: json['createdAt'] as String?,
-      updatedAt: json['updatedAt'] as String?,
-      title: json['title'] as String?,
-      description: json['description'] as String?,
-      contents: json['contents'] as String?,
+      createdAt: json['createdAt'] == null
+          ? const ServerTimestamp()
+          : sealedTimestampConverter.fromJson(json['createdAt'] as Object),
+      updatedAt: json['updatedAt'] == null
+          ? const ServerTimestamp()
+          : alwaysUseServerTimestampSealedTimestampConverter
+              .fromJson(json['updatedAt'] as Object),
+      title: json['title'] as String,
+      paidContent: json['paidContent'] as String? ?? '',
+      freeContent: json['freeContent'] as String? ?? '',
+      authorUID: json['authorUID'] as String,
       mapId: json['mapId'] as String?,
       imageUrls: (json['imageUrls'] as List<dynamic>?)
-          ?.map((e) => e as String)
-          .toList(),
-      author: json['author'] as String?,
-      price: json['price'] as int?,
+              ?.map((e) => e as String)
+              .toList() ??
+          const [],
+      price: json['price'] as int? ?? 100,
     );
 
 Map<String, dynamic> _$$_AnabaToJson(_$_Anaba instance) => <String, dynamic>{
-      'createdAt': instance.createdAt,
-      'updatedAt': instance.updatedAt,
+      'createdAt': sealedTimestampConverter.toJson(instance.createdAt),
+      'updatedAt': alwaysUseServerTimestampSealedTimestampConverter
+          .toJson(instance.updatedAt),
       'title': instance.title,
-      'description': instance.description,
-      'contents': instance.contents,
+      'paidContent': instance.paidContent,
+      'freeContent': instance.freeContent,
+      'authorUID': instance.authorUID,
       'mapId': instance.mapId,
       'imageUrls': instance.imageUrls,
-      'author': instance.author,
       'price': instance.price,
     };
