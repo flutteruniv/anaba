@@ -145,6 +145,11 @@ class HomePage extends ConsumerWidget {
             ),
           ),
         ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            context.go(AnabaFormPage.relativePath);
+          },
+        ),
       ),
     );
   }
