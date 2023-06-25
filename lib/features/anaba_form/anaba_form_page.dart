@@ -1,7 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../anaba/model/anaba.dart';
 import '../home/presentation/home_page.dart';
 
 class AnabaFormPage extends ConsumerStatefulWidget {
@@ -70,8 +73,25 @@ class _AnabaFormPageState extends ConsumerState<AnabaFormPage> {
                     const SizedBox(height: 32),
                     Center(
                       child: ElevatedButton(
-                        onPressed: () {
-                          context.push(HomePage.relativePath);
+                        onPressed: () async {
+                          await FirebaseFirestore.instance
+                              .collection('anaba')
+                              .add(
+                                Anaba(
+                                  title: titleController.text,
+                                  nonPurchasedContent:
+                                      privateInfoController.text,
+                                  purchasedContent: publicInfoController.text,
+                                  googleMapId: '',
+                                  imageUrls: [],
+                                  author:
+                                      FirebaseAuth.instance.currentUser!.uid,
+                                  price: int.parse(priceController.text),
+                                ).toJson(),
+                              );
+                          if (mounted) {
+                            context.go(HomePage.relativePath);
+                          }
                         },
                         child: const Text('保存する'),
                       ),

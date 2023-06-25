@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+
 import '../../../configs/union_timestamp.dart';
 
 part 'anaba.freezed.dart';
@@ -10,12 +11,12 @@ class Anaba with _$Anaba {
     /// 作成日
     @unionTimestampConverter
     @Default(UnionTimestamp.serverTimestamp())
-        UnionTimestamp createdAt,
+    UnionTimestamp createdAt,
 
     /// 更新日
     @alwaysUseServerTimestampUnionTimestampConverter
     @Default(UnionTimestamp.serverTimestamp())
-        UnionTimestamp updatedAt,
+    UnionTimestamp updatedAt,
 
     /// タイトル
     required String title,
@@ -27,7 +28,7 @@ class Anaba with _$Anaba {
     required String purchasedContent,
 
     /// googleMapに登録されているID
-    required int googleMapId,
+    required String googleMapId,
 
     /// 表示したい画像のURL
     required List<String> imageUrls,

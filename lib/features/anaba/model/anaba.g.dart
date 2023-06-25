@@ -17,7 +17,7 @@ _$_Anaba _$$_AnabaFromJson(Map<String, dynamic> json) => _$_Anaba(
       title: json['title'] as String,
       nonPurchasedContent: json['nonPurchasedContent'] as String,
       purchasedContent: json['purchasedContent'] as String,
-      googleMapId: json['googleMapId'] as int,
+      googleMapId: json['googleMapId'] as String,
       imageUrls:
           (json['imageUrls'] as List<dynamic>).map((e) => e as String).toList(),
       author: json['author'] as String,

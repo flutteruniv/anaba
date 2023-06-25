@@ -38,7 +38,7 @@ mixin _$Anaba {
   String get purchasedContent => throw _privateConstructorUsedError;
 
   /// googleMapに登録されているID
-  int get googleMapId => throw _privateConstructorUsedError;
+  String get googleMapId => throw _privateConstructorUsedError;
 
   /// 表示したい画像のURL
   List<String> get imageUrls => throw _privateConstructorUsedError;
@@ -65,7 +65,7 @@ abstract class $AnabaCopyWith<$Res> {
       String title,
       String nonPurchasedContent,
       String purchasedContent,
-      int googleMapId,
+      String googleMapId,
       List<String> imageUrls,
       String author,
       int price});
@@ -121,7 +121,7 @@ class _$AnabaCopyWithImpl<$Res, $Val extends Anaba>
       googleMapId: null == googleMapId
           ? _value.googleMapId
           : googleMapId // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       imageUrls: null == imageUrls
           ? _value.imageUrls
           : imageUrls // ignore: cast_nullable_to_non_nullable
@@ -166,7 +166,7 @@ abstract class _$$_AnabaCopyWith<$Res> implements $AnabaCopyWith<$Res> {
       String title,
       String nonPurchasedContent,
       String purchasedContent,
-      int googleMapId,
+      String googleMapId,
       List<String> imageUrls,
       String author,
       int price});
@@ -220,7 +220,7 @@ class __$$_AnabaCopyWithImpl<$Res> extends _$AnabaCopyWithImpl<$Res, _$_Anaba>
       googleMapId: null == googleMapId
           ? _value.googleMapId
           : googleMapId // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       imageUrls: null == imageUrls
           ? _value._imageUrls
           : imageUrls // ignore: cast_nullable_to_non_nullable
@@ -283,7 +283,7 @@ class _$_Anaba implements _Anaba {
 
   /// googleMapに登録されているID
   @override
-  final int googleMapId;
+  final String googleMapId;
 
   /// 表示したい画像のURL
   final List<String> _imageUrls;
@@ -368,7 +368,7 @@ abstract class _Anaba implements Anaba {
       required final String title,
       required final String nonPurchasedContent,
       required final String purchasedContent,
-      required final int googleMapId,
+      required final String googleMapId,
       required final List<String> imageUrls,
       required final String author,
       required final int price}) = _$_Anaba;
@@ -400,7 +400,7 @@ abstract class _Anaba implements Anaba {
   @override
 
   /// googleMapに登録されているID
-  int get googleMapId;
+  String get googleMapId;
   @override
 
   /// 表示したい画像のURL
