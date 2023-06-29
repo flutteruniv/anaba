@@ -70,7 +70,7 @@ class AnabaDetailsPage extends ConsumerWidget {
                 ),
                 const SizedBox(height: 16),
                 if (appUser?.anabas.contains(id) == true)
-                  SelectableLinkify(
+                  Linkify(
                     text: anaba.data().purchasedContent,
                   ),
                 if (appUser?.anabas.contains(id) == false)
