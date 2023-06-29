@@ -17,10 +17,12 @@ _$_Anaba _$$_AnabaFromJson(Map<String, dynamic> json) => _$_Anaba(
       title: json['title'] as String,
       nonPurchasedContent: json['nonPurchasedContent'] as String,
       purchasedContent: json['purchasedContent'] as String,
-      googleMapId: json['googleMapId'] as int,
-      imageUrls:
-          (json['imageUrls'] as List<dynamic>).map((e) => e as String).toList(),
-      author: json['author'] as String,
+      googleMapId: json['googleMapId'] as String? ?? '',
+      imageUrls: (json['imageUrls'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          const [],
+      authorUID: json['authorUID'] as String,
       price: json['price'] as int,
     );
 
@@ -33,6 +35,6 @@ Map<String, dynamic> _$$_AnabaToJson(_$_Anaba instance) => <String, dynamic>{
       'purchasedContent': instance.purchasedContent,
       'googleMapId': instance.googleMapId,
       'imageUrls': instance.imageUrls,
-      'author': instance.author,
+      'authorUID': instance.authorUID,
       'price': instance.price,
     };

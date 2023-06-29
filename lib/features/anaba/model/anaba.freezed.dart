@@ -38,13 +38,13 @@ mixin _$Anaba {
   String get purchasedContent => throw _privateConstructorUsedError;
 
   /// googleMapに登録されているID
-  int get googleMapId => throw _privateConstructorUsedError;
+  String get googleMapId => throw _privateConstructorUsedError;
 
   /// 表示したい画像のURL
   List<String> get imageUrls => throw _privateConstructorUsedError;
 
   /// 作者
-  String get author => throw _privateConstructorUsedError;
+  String get authorUID => throw _privateConstructorUsedError;
 
   /// 価格
   int get price => throw _privateConstructorUsedError;
@@ -65,9 +65,9 @@ abstract class $AnabaCopyWith<$Res> {
       String title,
       String nonPurchasedContent,
       String purchasedContent,
-      int googleMapId,
+      String googleMapId,
       List<String> imageUrls,
-      String author,
+      String authorUID,
       int price});
 
   $UnionTimestampCopyWith<$Res> get createdAt;
@@ -94,7 +94,7 @@ class _$AnabaCopyWithImpl<$Res, $Val extends Anaba>
     Object? purchasedContent = null,
     Object? googleMapId = null,
     Object? imageUrls = null,
-    Object? author = null,
+    Object? authorUID = null,
     Object? price = null,
   }) {
     return _then(_value.copyWith(
@@ -121,14 +121,14 @@ class _$AnabaCopyWithImpl<$Res, $Val extends Anaba>
       googleMapId: null == googleMapId
           ? _value.googleMapId
           : googleMapId // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       imageUrls: null == imageUrls
           ? _value.imageUrls
           : imageUrls // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      author: null == author
-          ? _value.author
-          : author // ignore: cast_nullable_to_non_nullable
+      authorUID: null == authorUID
+          ? _value.authorUID
+          : authorUID // ignore: cast_nullable_to_non_nullable
               as String,
       price: null == price
           ? _value.price
@@ -166,9 +166,9 @@ abstract class _$$_AnabaCopyWith<$Res> implements $AnabaCopyWith<$Res> {
       String title,
       String nonPurchasedContent,
       String purchasedContent,
-      int googleMapId,
+      String googleMapId,
       List<String> imageUrls,
-      String author,
+      String authorUID,
       int price});
 
   @override
@@ -193,7 +193,7 @@ class __$$_AnabaCopyWithImpl<$Res> extends _$AnabaCopyWithImpl<$Res, _$_Anaba>
     Object? purchasedContent = null,
     Object? googleMapId = null,
     Object? imageUrls = null,
-    Object? author = null,
+    Object? authorUID = null,
     Object? price = null,
   }) {
     return _then(_$_Anaba(
@@ -220,14 +220,14 @@ class __$$_AnabaCopyWithImpl<$Res> extends _$AnabaCopyWithImpl<$Res, _$_Anaba>
       googleMapId: null == googleMapId
           ? _value.googleMapId
           : googleMapId // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       imageUrls: null == imageUrls
           ? _value._imageUrls
           : imageUrls // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      author: null == author
-          ? _value.author
-          : author // ignore: cast_nullable_to_non_nullable
+      authorUID: null == authorUID
+          ? _value.authorUID
+          : authorUID // ignore: cast_nullable_to_non_nullable
               as String,
       price: null == price
           ? _value.price
@@ -248,9 +248,9 @@ class _$_Anaba implements _Anaba {
       required this.title,
       required this.nonPurchasedContent,
       required this.purchasedContent,
-      required this.googleMapId,
-      required final List<String> imageUrls,
-      required this.author,
+      this.googleMapId = '',
+      final List<String> imageUrls = const [],
+      required this.authorUID,
       required this.price})
       : _imageUrls = imageUrls;
 
@@ -283,13 +283,15 @@ class _$_Anaba implements _Anaba {
 
   /// googleMapに登録されているID
   @override
-  final int googleMapId;
+  @JsonKey()
+  final String googleMapId;
 
   /// 表示したい画像のURL
   final List<String> _imageUrls;
 
   /// 表示したい画像のURL
   @override
+  @JsonKey()
   List<String> get imageUrls {
     if (_imageUrls is EqualUnmodifiableListView) return _imageUrls;
     // ignore: implicit_dynamic_type
@@ -298,7 +300,7 @@ class _$_Anaba implements _Anaba {
 
   /// 作者
   @override
-  final String author;
+  final String authorUID;
 
   /// 価格
   @override
@@ -306,7 +308,7 @@ class _$_Anaba implements _Anaba {
 
   @override
   String toString() {
-    return 'Anaba(createdAt: $createdAt, updatedAt: $updatedAt, title: $title, nonPurchasedContent: $nonPurchasedContent, purchasedContent: $purchasedContent, googleMapId: $googleMapId, imageUrls: $imageUrls, author: $author, price: $price)';
+    return 'Anaba(createdAt: $createdAt, updatedAt: $updatedAt, title: $title, nonPurchasedContent: $nonPurchasedContent, purchasedContent: $purchasedContent, googleMapId: $googleMapId, imageUrls: $imageUrls, authorUID: $authorUID, price: $price)';
   }
 
   @override
@@ -327,7 +329,8 @@ class _$_Anaba implements _Anaba {
                 other.googleMapId == googleMapId) &&
             const DeepCollectionEquality()
                 .equals(other._imageUrls, _imageUrls) &&
-            (identical(other.author, author) || other.author == author) &&
+            (identical(other.authorUID, authorUID) ||
+                other.authorUID == authorUID) &&
             (identical(other.price, price) || other.price == price));
   }
 
@@ -342,7 +345,7 @@ class _$_Anaba implements _Anaba {
       purchasedContent,
       googleMapId,
       const DeepCollectionEquality().hash(_imageUrls),
-      author,
+      authorUID,
       price);
 
   @JsonKey(ignore: true)
@@ -368,9 +371,9 @@ abstract class _Anaba implements Anaba {
       required final String title,
       required final String nonPurchasedContent,
       required final String purchasedContent,
-      required final int googleMapId,
-      required final List<String> imageUrls,
-      required final String author,
+      final String googleMapId,
+      final List<String> imageUrls,
+      required final String authorUID,
       required final int price}) = _$_Anaba;
 
   factory _Anaba.fromJson(Map<String, dynamic> json) = _$_Anaba.fromJson;
@@ -400,7 +403,7 @@ abstract class _Anaba implements Anaba {
   @override
 
   /// googleMapに登録されているID
-  int get googleMapId;
+  String get googleMapId;
   @override
 
   /// 表示したい画像のURL
@@ -408,7 +411,7 @@ abstract class _Anaba implements Anaba {
   @override
 
   /// 作者
-  String get author;
+  String get authorUID;
   @override
 
   /// 価格

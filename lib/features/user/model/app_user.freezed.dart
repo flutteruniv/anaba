@@ -24,6 +24,7 @@ mixin _$AppUser {
   String? get customerId => throw _privateConstructorUsedError;
   String? get stripeAccountId => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
+  List<String> get anabas => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -39,7 +40,8 @@ abstract class $AppUserCopyWith<$Res> {
       {bool detailsSubmitted,
       String? customerId,
       String? stripeAccountId,
-      String? email});
+      String? email,
+      List<String> anabas});
 }
 
 /// @nodoc
@@ -59,6 +61,7 @@ class _$AppUserCopyWithImpl<$Res, $Val extends AppUser>
     Object? customerId = freezed,
     Object? stripeAccountId = freezed,
     Object? email = freezed,
+    Object? anabas = null,
   }) {
     return _then(_value.copyWith(
       detailsSubmitted: null == detailsSubmitted
@@ -77,6 +80,10 @@ class _$AppUserCopyWithImpl<$Res, $Val extends AppUser>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String?,
+      anabas: null == anabas
+          ? _value.anabas
+          : anabas // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ) as $Val);
   }
 }
@@ -92,7 +99,8 @@ abstract class _$$_AppUserCopyWith<$Res> implements $AppUserCopyWith<$Res> {
       {bool detailsSubmitted,
       String? customerId,
       String? stripeAccountId,
-      String? email});
+      String? email,
+      List<String> anabas});
 }
 
 /// @nodoc
@@ -109,6 +117,7 @@ class __$$_AppUserCopyWithImpl<$Res>
     Object? customerId = freezed,
     Object? stripeAccountId = freezed,
     Object? email = freezed,
+    Object? anabas = null,
   }) {
     return _then(_$_AppUser(
       detailsSubmitted: null == detailsSubmitted
@@ -127,6 +136,10 @@ class __$$_AppUserCopyWithImpl<$Res>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String?,
+      anabas: null == anabas
+          ? _value._anabas
+          : anabas // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
@@ -138,7 +151,9 @@ class _$_AppUser implements _AppUser {
       {this.detailsSubmitted = false,
       this.customerId,
       this.stripeAccountId,
-      this.email});
+      this.email,
+      final List<String> anabas = const []})
+      : _anabas = anabas;
 
   factory _$_AppUser.fromJson(Map<String, dynamic> json) =>
       _$$_AppUserFromJson(json);
@@ -152,10 +167,18 @@ class _$_AppUser implements _AppUser {
   final String? stripeAccountId;
   @override
   final String? email;
+  final List<String> _anabas;
+  @override
+  @JsonKey()
+  List<String> get anabas {
+    if (_anabas is EqualUnmodifiableListView) return _anabas;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_anabas);
+  }
 
   @override
   String toString() {
-    return 'AppUser(detailsSubmitted: $detailsSubmitted, customerId: $customerId, stripeAccountId: $stripeAccountId, email: $email)';
+    return 'AppUser(detailsSubmitted: $detailsSubmitted, customerId: $customerId, stripeAccountId: $stripeAccountId, email: $email, anabas: $anabas)';
   }
 
   @override
@@ -169,13 +192,14 @@ class _$_AppUser implements _AppUser {
                 other.customerId == customerId) &&
             (identical(other.stripeAccountId, stripeAccountId) ||
                 other.stripeAccountId == stripeAccountId) &&
-            (identical(other.email, email) || other.email == email));
+            (identical(other.email, email) || other.email == email) &&
+            const DeepCollectionEquality().equals(other._anabas, _anabas));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, detailsSubmitted, customerId, stripeAccountId, email);
+  int get hashCode => Object.hash(runtimeType, detailsSubmitted, customerId,
+      stripeAccountId, email, const DeepCollectionEquality().hash(_anabas));
 
   @JsonKey(ignore: true)
   @override
@@ -196,7 +220,8 @@ abstract class _AppUser implements AppUser {
       {final bool detailsSubmitted,
       final String? customerId,
       final String? stripeAccountId,
-      final String? email}) = _$_AppUser;
+      final String? email,
+      final List<String> anabas}) = _$_AppUser;
 
   factory _AppUser.fromJson(Map<String, dynamic> json) = _$_AppUser.fromJson;
 
@@ -208,6 +233,8 @@ abstract class _AppUser implements AppUser {
   String? get stripeAccountId;
   @override
   String? get email;
+  @override
+  List<String> get anabas;
   @override
   @JsonKey(ignore: true)
   _$$_AppUserCopyWith<_$_AppUser> get copyWith =>

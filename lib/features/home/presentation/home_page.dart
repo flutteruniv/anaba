@@ -1,9 +1,12 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../providers.dart';
+import '../../anaba/presentation/anaba_details_page.dart';
 import '../../anaba_form/anaba_form_page.dart';
 import '../../auth/presentation/auth_dialog.dart';
 
@@ -15,6 +18,12 @@ class HomePage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final user = ref.watch(P.userProvider).valueOrNull;
+    log(user?.uid ?? '');
+
+    final appUser = ref.watch(P.appUserProvider(user?.uid ?? '')).valueOrNull;
+    log(appUser?.data()?.detailsSubmitted.toString() ?? '');
+
+    final anabaList = ref.watch(P.anabaListProvider).valueOrNull?.docs ?? [];
     return SelectionArea(
       child: Scaffold(
         body: SingleChildScrollView(
@@ -37,7 +46,7 @@ class HomePage extends ConsumerWidget {
                         fontWeight: FontWeight.w200,
                       ),
                     ),
-                    const SizedBox(height: 16),
+                    const SizedBox(height: 64),
                     const Text(
                       '「知る人ぞ売る」',
                       style: TextStyle(
@@ -53,37 +62,7 @@ class HomePage extends ConsumerWidget {
                         fontWeight: FontWeight.w600,
                       ),
                     ),
-                    const SizedBox(height: 32),
-                    if (user == null)
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 32),
-                        child: ElevatedButton(
-                          onPressed: () {
-                            AuthDialog.show(context);
-                          },
-                          child: const Text('事前登録'),
-                        ),
-                      ),
-                    if (user != null)
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 32),
-                        child: ElevatedButton(
-                          onPressed: () async {
-                            final url = await ref
-                                .read(P.stripeAccountUrlProvider.future);
-                            await launchUrl(Uri.parse(url));
-                          },
-                          child: const Text('アカウント情報を入力'),
-                        ),
-                      ),
-                    if (user != null)
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 32),
-                        child: ElevatedButton(
-                          onPressed: ref.read(P.signOutProvider),
-                          child: const Text('ログアウト'),
-                        ),
-                      ),
+                    const SizedBox(height: 64),
                     const Text(
                       '雑誌やサイトに載ったランキングでは満足できない。平均化された情報はいらない、誰かの熱狂的なおすすめが知りたい。そんなちょっと「あまのじゃく」なあなたに向けたサービスを開発中。',
                       style: TextStyle(
@@ -97,58 +76,137 @@ class HomePage extends ConsumerWidget {
                         fontSize: 16,
                       ),
                     ),
-                    const SizedBox(height: 32),
-                    ElevatedButton(
-                      onPressed: () async {
-                        // FIXME(kenta-wakasa): これはセキュリティ的には危険
-                        /// functions側で customerId は取得した方がいい。
-                        /// つまり dcumentId だけを指定して購入する形式にしたほうがいい。
-                        final url = await ref
-                            .read(P.stripeRepository)
-                            .createStripeCheckoutUrl(
-                              title: 'テスト商品',
-                              amount: 100,
-                              accountId: 'acct_1N7ei8BOZVbq0TLE',
-                              customerId: 'cus_NtRb8N8Pp8pGJi',
-                              documentId: 'testId',
-                            );
-                        await launchUrl(Uri.parse(url));
-                      },
-                      child: const Text('購入テスト'),
+
+                    // ElevatedButton(
+                    //   onPressed: () async {
+                    //     // FIXME(kenta-wakasa): これはセキュリティ的には危険
+                    //     /// functions側で customerId は取得した方がいい。
+                    //     /// つまり dcumentId だけを指定して購入する形式にしたほうがいい。
+                    //     final url = await ref
+                    //         .read(P.stripeRepository)
+                    //         .createStripeCheckoutUrl(
+                    //           title: 'テスト商品',
+                    //           amount: 100,
+                    //           accountId: 'acct_1N7ei8BOZVbq0TLE',
+                    //           customerId: 'cus_NtRb8N8Pp8pGJi',
+                    //           documentId: 'testId',
+                    //         );
+                    //     await launchUrl(Uri.parse(url));
+                    //   },
+                    //   child: const Text('購入テスト'),
+                    // ),
+                    const SizedBox(height: 64),
+                    const Text(
+                      '新着穴場',
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                     const SizedBox(height: 32),
-                    ElevatedButton(
-                      onPressed: () async {
-                        final url =
-                            await ref.read(P.stripeLoginUrlProvider.future);
-                        await launchUrl(Uri.parse(url));
-                      },
-                      child: const Text('ダッシュボードを見る'),
+                    ConstrainedBox(
+                      constraints: const BoxConstraints(maxHeight: 560),
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: anabaList.length,
+                        itemBuilder: (context, index) {
+                          final anaba = anabaList[index];
+                          return ListTile(
+                            onTap: () {
+                              context.go(
+                                '${AnabaDetailsPage.relativePath}/${anaba.reference.id}',
+                              );
+                            },
+                            title: Text(anaba.data().title),
+                          );
+                        },
+                      ),
                     ),
-                    const SizedBox(height: 32),
-                    ElevatedButton(
-                      onPressed: () {
-                        context.push(AnabaFormPage.relativePath);
-                        // Navigator.push(
-                        //   context,
-                        //   MaterialPageRoute<void>(
-                        //     builder: (context) => const AnabaFormPage(),
-                        //   ),
-                        // );
-                      },
-                      child: const Text('anaba入力フォームテスト'),
-                    ),
-                    const SizedBox(height: 32),
+
+                    const SizedBox(height: 64),
+                    if (user == null)
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 24),
+                        child: SizedBox(
+                          width: 400,
+                          height: 32,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              AuthDialog.show(context);
+                            },
+                            child: const Text('事前登録'),
+                          ),
+                        ),
+                      ),
+                    if (user != null &&
+                        (appUser?.data()?.detailsSubmitted ?? false) == false)
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 24),
+                        child: SizedBox(
+                          width: 400,
+                          height: 32,
+                          child: ElevatedButton(
+                            onPressed: () async {
+                              final url = await ref
+                                  .read(P.stripeAccountUrlProvider.future);
+                              await launchUrl(Uri.parse(url));
+                            },
+                            child: const Text('アカウント情報を入力'),
+                          ),
+                        ),
+                      ),
+
+                    if (user != null &&
+                        (appUser?.data()?.detailsSubmitted ?? false))
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 24),
+                        child: SizedBox(
+                          width: 400,
+                          height: 32,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              context.go(AnabaFormPage.relativePath);
+                            },
+                            child: const Text('穴場を報告する'),
+                          ),
+                        ),
+                      ),
+                    if (user != null &&
+                        (appUser?.data()?.detailsSubmitted ?? false))
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 24),
+                        child: SizedBox(
+                          width: 400,
+                          height: 32,
+                          child: ElevatedButton(
+                            onPressed: () async {
+                              final url = await ref
+                                  .read(P.stripeLoginUrlProvider.future);
+                              await launchUrl(Uri.parse(url));
+                            },
+                            child: const Text('ダッシュボードを見る'),
+                          ),
+                        ),
+                      ),
+                    if (user != null)
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 24),
+                        child: SizedBox(
+                          width: 400,
+                          height: 32,
+                          child: ElevatedButton(
+                            onPressed: ref.read(P.signOutProvider),
+                            child: const Text('ログアウト'),
+                          ),
+                        ),
+                      ),
+
+                    const SizedBox(height: 80)
                   ],
                 ),
               ),
             ),
           ),
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            context.go(AnabaFormPage.relativePath);
-          },
         ),
       ),
     );

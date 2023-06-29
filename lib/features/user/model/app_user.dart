@@ -10,6 +10,7 @@ class AppUser with _$AppUser {
     String? customerId,
     String? stripeAccountId,
     String? email,
+    @Default([]) List<String> anabas,
   }) = _AppUser;
 
   factory AppUser.fromJson(Map<String, dynamic> json) =>

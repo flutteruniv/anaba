@@ -13,14 +13,15 @@ import 'configs/flavor.dart';
 import 'configs/router.dart';
 import 'configs/theme.dart';
 import 'firebase_options.dart';
+import 'providers.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   /// Google Sign In を FLAVOR で分けるための処理
   final meta = html.MetaElement()
-    ..content = 'google-signin-client_id'
-    ..name = isDevMode
+    ..name = 'google-signin-client_id'
+    ..content = isDevMode
         ? '650202335339-j1l3u9rkhkam136odbgk6rul86hlts7e.apps.googleusercontent.com'
         : '746969617059-vgrlq8ajjgh0fscavu0rc12esju8mqga.apps.googleusercontent.com';
   html.document.head?.append(meta);
@@ -40,11 +41,22 @@ void main() async {
   );
 }
 
-class MyApp extends ConsumerWidget {
+class MyApp extends ConsumerStatefulWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends ConsumerState<MyApp> {
+  @override
+  void initState() {
+    super.initState();
+    ref.read(P.createUserProvider).call();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return MaterialApp.router(
       theme: ref.watch(themeProvider),
       routerConfig: ref.watch(routerProvider),
