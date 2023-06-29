@@ -3,6 +3,7 @@ import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 import '../../../providers.dart';
 import '../../auth/presentation/auth_dialog.dart';
@@ -62,6 +63,7 @@ class AnabaDetailsPage extends ConsumerWidget {
                 ),
                 const SizedBox(height: 32),
                 Linkify(
+                  onOpen: (link) => launchUrlString(link.url),
                   text: anaba.data().nonPurchasedContent,
                 ),
                 const SizedBox(height: 16),
@@ -71,6 +73,7 @@ class AnabaDetailsPage extends ConsumerWidget {
                 const SizedBox(height: 16),
                 if (appUser?.anabas.contains(id) == true)
                   Linkify(
+                    onOpen: (link) => launchUrlString(link.url),
                     text: anaba.data().purchasedContent,
                   ),
                 if (appUser?.anabas.contains(id) == false)
