@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../providers.dart';
+import '../../auth/presentation/auth_dialog.dart';
+import '../../home/presentation/home_page.dart';
 import '../../user/model/app_user.dart';
 
 class AnabaDetailsPage extends ConsumerWidget {
@@ -31,12 +35,24 @@ class AnabaDetailsPage extends ConsumerWidget {
         child: Center(
           child: Container(
             alignment: Alignment.center,
-            width: 400,
+            width: 480,
             padding: const EdgeInsets.all(16),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(height: 64),
+                InkWell(
+                  onTap: () {
+                    context.go(HomePage.relativePath);
+                  },
+                  child: Center(
+                    child: SizedBox(
+                      height: 120,
+                      child: Image.asset('images/icon.png'),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 32),
                 Text(
                   anaba.data().title,
                   style: const TextStyle(
@@ -45,14 +61,18 @@ class AnabaDetailsPage extends ConsumerWidget {
                   ),
                 ),
                 const SizedBox(height: 32),
-                Text(anaba.data().nonPurchasedContent),
+                SelectableLinkify(
+                  text: anaba.data().nonPurchasedContent,
+                ),
                 const SizedBox(height: 16),
                 const Center(
                   child: Text('---------- ここからは有料区間です ----------'),
                 ),
                 const SizedBox(height: 16),
                 if (appUser?.anabas.contains(id) == true)
-                  Text(anaba.data().purchasedContent),
+                  SelectableLinkify(
+                    text: anaba.data().purchasedContent,
+                  ),
                 if (appUser?.anabas.contains(id) == false)
                   ElevatedButton(
                     onPressed: () async {
@@ -74,11 +94,23 @@ class AnabaDetailsPage extends ConsumerWidget {
                           );
                       await launchUrl(Uri.parse(url));
                     },
+
                     // TODO(kenta-wakasa): そもそも登録していなければ登録を促す。
                     child: const Center(
                       child: Text('購入する'),
                     ),
-                  )
+                  ),
+                if (appUser == null)
+                  SizedBox(
+                    width: 480,
+                    height: 32,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        AuthDialog.show(context);
+                      },
+                      child: const Text('まずは登録する'),
+                    ),
+                  ),
               ],
             ),
           ),

@@ -29,7 +29,7 @@ class HomePage extends ConsumerWidget {
         body: SingleChildScrollView(
           child: Center(
             child: SizedBox(
-              width: 400,
+              width: 480,
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: Column(
@@ -76,25 +76,6 @@ class HomePage extends ConsumerWidget {
                         fontSize: 16,
                       ),
                     ),
-
-                    // ElevatedButton(
-                    //   onPressed: () async {
-                    //     // FIXME(kenta-wakasa): これはセキュリティ的には危険
-                    //     /// functions側で customerId は取得した方がいい。
-                    //     /// つまり dcumentId だけを指定して購入する形式にしたほうがいい。
-                    //     final url = await ref
-                    //         .read(P.stripeRepository)
-                    //         .createStripeCheckoutUrl(
-                    //           title: 'テスト商品',
-                    //           amount: 100,
-                    //           accountId: 'acct_1N7ei8BOZVbq0TLE',
-                    //           customerId: 'cus_NtRb8N8Pp8pGJi',
-                    //           documentId: 'testId',
-                    //         );
-                    //     await launchUrl(Uri.parse(url));
-                    //   },
-                    //   child: const Text('購入テスト'),
-                    // ),
                     const SizedBox(height: 64),
                     const Text(
                       '新着穴場',
@@ -122,19 +103,18 @@ class HomePage extends ConsumerWidget {
                         },
                       ),
                     ),
-
                     const SizedBox(height: 64),
                     if (user == null)
                       Padding(
                         padding: const EdgeInsets.only(bottom: 24),
                         child: SizedBox(
-                          width: 400,
+                          width: 480,
                           height: 32,
                           child: ElevatedButton(
                             onPressed: () {
                               AuthDialog.show(context);
                             },
-                            child: const Text('事前登録'),
+                            child: const Text('ログイン'),
                           ),
                         ),
                       ),
@@ -143,7 +123,7 @@ class HomePage extends ConsumerWidget {
                       Padding(
                         padding: const EdgeInsets.only(bottom: 24),
                         child: SizedBox(
-                          width: 400,
+                          width: 480,
                           height: 32,
                           child: ElevatedButton(
                             onPressed: () async {
@@ -155,13 +135,12 @@ class HomePage extends ConsumerWidget {
                           ),
                         ),
                       ),
-
                     if (user != null &&
                         (appUser?.data()?.detailsSubmitted ?? false))
                       Padding(
                         padding: const EdgeInsets.only(bottom: 24),
                         child: SizedBox(
-                          width: 400,
+                          width: 480,
                           height: 32,
                           child: ElevatedButton(
                             onPressed: () {
@@ -176,7 +155,7 @@ class HomePage extends ConsumerWidget {
                       Padding(
                         padding: const EdgeInsets.only(bottom: 24),
                         child: SizedBox(
-                          width: 400,
+                          width: 480,
                           height: 32,
                           child: ElevatedButton(
                             onPressed: () async {
@@ -192,7 +171,7 @@ class HomePage extends ConsumerWidget {
                       Padding(
                         padding: const EdgeInsets.only(bottom: 24),
                         child: SizedBox(
-                          width: 400,
+                          width: 480,
                           height: 32,
                           child: ElevatedButton(
                             onPressed: ref.read(P.signOutProvider),
@@ -200,7 +179,6 @@ class HomePage extends ConsumerWidget {
                           ),
                         ),
                       ),
-
                     const SizedBox(height: 80)
                   ],
                 ),
