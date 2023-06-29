@@ -29,7 +29,7 @@ class HomePage extends ConsumerWidget {
         body: SingleChildScrollView(
           child: Center(
             child: SizedBox(
-              width: 400,
+              width: 480,
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: Column(
@@ -108,13 +108,13 @@ class HomePage extends ConsumerWidget {
                       Padding(
                         padding: const EdgeInsets.only(bottom: 24),
                         child: SizedBox(
-                          width: 400,
+                          width: 480,
                           height: 32,
                           child: ElevatedButton(
                             onPressed: () {
                               AuthDialog.show(context);
                             },
-                            child: const Text('事前登録'),
+                            child: const Text('ログイン'),
                           ),
                         ),
                       ),
@@ -123,7 +123,7 @@ class HomePage extends ConsumerWidget {
                       Padding(
                         padding: const EdgeInsets.only(bottom: 24),
                         child: SizedBox(
-                          width: 400,
+                          width: 480,
                           height: 32,
                           child: ElevatedButton(
                             onPressed: () async {
@@ -140,7 +140,7 @@ class HomePage extends ConsumerWidget {
                       Padding(
                         padding: const EdgeInsets.only(bottom: 24),
                         child: SizedBox(
-                          width: 400,
+                          width: 480,
                           height: 32,
                           child: ElevatedButton(
                             onPressed: () {
@@ -155,7 +155,7 @@ class HomePage extends ConsumerWidget {
                       Padding(
                         padding: const EdgeInsets.only(bottom: 24),
                         child: SizedBox(
-                          width: 400,
+                          width: 480,
                           height: 32,
                           child: ElevatedButton(
                             onPressed: () async {
@@ -171,7 +171,7 @@ class HomePage extends ConsumerWidget {
                       Padding(
                         padding: const EdgeInsets.only(bottom: 24),
                         child: SizedBox(
-                          width: 400,
+                          width: 480,
                           height: 32,
                           child: ElevatedButton(
                             onPressed: ref.read(P.signOutProvider),

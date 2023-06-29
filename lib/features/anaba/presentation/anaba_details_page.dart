@@ -35,7 +35,7 @@ class AnabaDetailsPage extends ConsumerWidget {
         child: Center(
           child: Container(
             alignment: Alignment.center,
-            width: 400,
+            width: 480,
             padding: const EdgeInsets.all(16),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -99,10 +99,10 @@ class AnabaDetailsPage extends ConsumerWidget {
                     child: const Center(
                       child: Text('購入する'),
                     ),
-                  )
-                else
+                  ),
+                if (appUser == null)
                   SizedBox(
-                    width: 400,
+                    width: 480,
                     height: 32,
                     child: ElevatedButton(
                       onPressed: () {

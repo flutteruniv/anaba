@@ -55,7 +55,7 @@ class _AnabaFormPageState extends ConsumerState<AnabaFormPage> {
       body: SingleChildScrollView(
         child: Center(
           child: SizedBox(
-            width: 400,
+            width: 480,
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Form(
@@ -115,7 +115,7 @@ class _AnabaFormPageState extends ConsumerState<AnabaFormPage> {
                     const SizedBox(height: 56),
                     Center(
                       child: SizedBox(
-                        width: 400,
+                        width: 480,
                         height: 32,
                         child: ElevatedButton(
                           onPressed: canSubmit
@@ -150,7 +150,8 @@ class _AnabaFormPageState extends ConsumerState<AnabaFormPage> {
                           child: const Text('保存する'),
                         ),
                       ),
-                    )
+                    ),
+                    const SizedBox(height: 40),
                   ],
                 ),
               ),
