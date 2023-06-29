@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sign_button/sign_button.dart';
 
-import '../providers/auth_service.dart';
+import '../../../providers.dart';
 
 class AuthDialog extends ConsumerStatefulWidget {
   const AuthDialog({super.key});
@@ -42,7 +42,7 @@ class _AuthDialogState extends ConsumerState<AuthDialog> {
           SignInButton(
             buttonType: ButtonType.google,
             onPressed: () async {
-              await ref.read(signInProvider).call();
+              await ref.read(P.signInProvider).call();
               if (mounted) {
                 Navigator.of(context).pop();
               }

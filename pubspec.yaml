@@ -23,6 +23,10 @@ dependencies:
   sign_button: ^2.0.3
   google_sign_in: ^6.1.0
   firebase_auth: ^4.4.2
+  cloud_functions: ^4.1.1
+  url_launcher: ^6.1.10
+  cloud_firestore: ^4.7.0
+  flutterfire_json_converters: ^0.0.3
 
 dev_dependencies:
   flutter_test:
