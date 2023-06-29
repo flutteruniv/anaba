@@ -18,7 +18,7 @@ export const createStripeCheckoutUrl = functions.region(`asia-northeast1`).https
   const checkoutSession: Stripe.Checkout.SessionCreateParams = {
     allow_promotion_codes: true,
     billing_address_collection: `auto`,
-    success_url: `https://anaba.app`,
+    success_url: `https://anaba.app/anaba/${data.documentId}`,
     cancel_url: `https://anaba.app`,
     mode: `payment`,
     line_items: [
