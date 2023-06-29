@@ -61,7 +61,7 @@ class AnabaDetailsPage extends ConsumerWidget {
                   ),
                 ),
                 const SizedBox(height: 32),
-                SelectableLinkify(
+                Linkify(
                   text: anaba.data().nonPurchasedContent,
                 ),
                 const SizedBox(height: 16),
