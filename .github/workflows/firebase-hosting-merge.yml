@@ -15,7 +15,7 @@ jobs:
         with:
           cache: true
           channel: "stable"
-      - run: flutter build web --web-renderer html
+      - run: flutter build web --web-renderer html --dart-define=FLAVOR=prod
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: "${{ secrets.GITHUB_TOKEN }}"
